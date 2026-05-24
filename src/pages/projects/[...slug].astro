@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+const { title, tags, date, isRedacted } = project.data;
+---
+<Base title={`${title} | aksyuma`}>
+  <article class="max-w-2xl">
+    <header class="mb-8">
+      {isRedacted && (
+        <span class="inline-block font-mono text-[10px] tracking-widest text-red-500 bg-red-950/50 border border-red-900 px-2 py-0.5 rounded uppercase mb-4">
+          Declassified
+        </span>
+      )}
+      <h1 class="text-3xl font-extrabold font-mono tracking-tight mb-2">{title}</h1>
+      <div class="flex items-center gap-4 text-sm text-zinc-500 font-mono">
+        <time>{date}</time>
+        <div class="flex gap-2">
+          {tags.map((tag: string) => (
+            <span class="text-xs bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded">{tag}</span>
+          ))}
+        </div>
+      </div>
+    </header>
+    <div class="prose prose-invert prose-zinc prose-headings:font-mono prose-headings:tracking-tight">
+      <Content />
+    </div>
+  </article>
+</Base>
