@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="aksyuma | Portfolio">
+  <main>
+    <section class="hero">
+      <h1>Hi, I'm <span class="accent">aksyuma</span></h1>
+      <p>Developer & Creator</p>
+      <nav>
+        <a href="https://github.com/aksyuma" target="_blank">GitHub</a>
+      </nav>
+    </section>
+
+    <section class="about">
+      <h2>About</h2>
+      <p>Welcome to my portfolio. I build things for the web.</p>
+    </section>
+
+    <section class="projects">
+      <h2>Projects</h2>
+      <ul>
+        <li><strong>Project 1</strong> — Description here</li>
+        <li><strong>Project 2</strong> — Description here</li>
+      </ul>
+    </section>
+  </main>
+</Base>
+
+<style>
+  main {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+  .hero {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .hero h1 { font-size: 2.5rem; }
+  .accent { color: #38bdf8; }
+  .hero nav { margin-top: 1rem; display: flex; gap: 1rem; justify-content: center; }
+  section { margin-bottom: 2.5rem; }
+  h2 { margin-bottom: 0.5rem; color: #94a3b8; }
+  ul { list-style: none; }
+  li { margin-bottom: 0.5rem; }
+</style>

@@ -1,0 +1,22 @@
+{
+  "name": "aksyuma-portfolio",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "aksyuma",
+      "url": "https://github.com/aksyuma"
+    }
+  ],
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^4.16.0"
+  },
+  "packageManager": "yarn@4.0.0"
+}
