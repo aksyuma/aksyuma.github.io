@@ -1,8 +1,13 @@
-## Feature
+## Type
+
+- [ ] Feature
+- [ ] Security
+- [ ] Documentation
+- [ ] Bug fix
 
 ### Current State
 
-<!-- What exists today? What problem or gap does this address? -->
+<!-- What exists today? What problem, gap, or vulnerability does this address? -->
 
 ### Solution State
 
@@ -17,4 +22,4 @@
 
 ### References / Links
 
-<!-- Related issues, tasks, ADRs, documentation, or external resources -->
+<!-- Related issues, tasks, ADRs, or external resources -->
