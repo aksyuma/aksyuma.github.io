@@ -1,3 +1,4 @@
+# Validates build integrity and runs supply-chain security checks on every push and PR.
 name: CI
 
 on:

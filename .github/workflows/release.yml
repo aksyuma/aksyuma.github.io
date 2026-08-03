@@ -1,3 +1,4 @@
+# Creates a semantic version tag, changelog entry, and GitHub release after a successful deploy.
 name: Release
 
 on:
