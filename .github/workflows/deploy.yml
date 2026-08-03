@@ -7,7 +7,7 @@ on:
     types: [completed]
   workflow_dispatch:
 
-permissions: {}
+permissions: {} # Default deny — permissions granted at job level
 
 concurrency:
   group: pages
@@ -17,9 +17,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      pages: write
-      id-token: write
+      contents: read # Needed to checkout the repository
+      pages: write # Needed to publish to GitHub Pages
+      id-token: write # Needed for Pages OIDC token verification
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: github-pages
