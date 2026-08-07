@@ -3,3 +3,21 @@ dist/
 .astro/
 .yarn/cache/
 .yarn/install-state.gz
+
+# Secrets and credentials
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*~
+.idea/
+.vscode/

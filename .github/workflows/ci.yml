@@ -1,3 +1,4 @@
+# Validates build integrity and runs supply-chain security checks on every push and PR.
 name: CI
 
 on:
@@ -6,14 +7,80 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read # Needed to checkout the repository
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - run: corepack enable
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 22
-      - run: corepack enable
+          node-version-file: .node-version
+          cache: yarn
       - run: yarn install --immutable
       - run: yarn build
+
+      - name: Generate artifact digest
+        run: |
+          tar -czf dist.tar.gz dist/
+          sha256sum dist.tar.gz > dist.tar.gz.sha256
+          echo "ARTIFACT_DIGEST=$(cat dist.tar.gz.sha256 | awk '{print $1}')" >> "$GITHUB_OUTPUT"
+          cat dist.tar.gz.sha256
+        id: digest
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: site-dist
+          path: dist/
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Upload artifact digest
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: artifact-digest
+          path: dist.tar.gz.sha256
+          retention-days: 7
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
+        with:
+          path: .
+          artifact-name: sbom-spdx.json
+          output-file: sbom-spdx.json
+          format: spdx-json
+
+  security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          fetch-depth: 0 # Full history needed for gitleaks diff scanning
+      - run: corepack enable
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .node-version
+          cache: yarn
+      - run: yarn install --immutable
+
+      - name: Dependency audit
+        id: audit
+        run: |
+          if ! yarn npm audit --all --severity moderate 2>&1 | tee audit-output.txt; then
+            echo "::warning::Dependency audit found vulnerabilities — see job log for details"
+            echo "audit_failed=true" >> "$GITHUB_OUTPUT"
+          fi
+        continue-on-error: true
+
+      - name: Secret scanning (gitleaks)
+        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.8
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+        continue-on-error: true
