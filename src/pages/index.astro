@@ -5,20 +5,42 @@ import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
 ---
-<Base title="aksyuma | Portfolio">
-	<section class="mb-12">
-		<h1 class="text-4xl font-extrabold tracking-tight mb-4 font-mono">
-			Systems & Software Engineer
+<Base title="Amos Syuma | Platform & Distributed Systems Engineer">
+	<section class="mb-16">
+		<h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 font-mono">
+			Amos Syuma
 		</h1>
-		<p class="text-zinc-400 text-lg max-w-xl leading-relaxed">
-			Welcome to my active workspace. Below is a declassified look at my architectural philosophies and case studies.
+		<p class="text-emerald-400 font-mono text-sm mb-6">Platform & Distributed Systems Engineer</p>
+		<p class="text-zinc-300 text-lg max-w-xl leading-relaxed">
+			I design data pipelines, delivery platforms, and the operational boundaries that keep them recoverable.
 		</p>
 	</section>
 
+	<section class="mb-16">
+		<div class="flex flex-wrap gap-3">
+			<span class="font-mono text-xs px-3 py-1.5 border border-zinc-700 rounded-md text-zinc-300 bg-zinc-900/50">Go</span>
+			<span class="font-mono text-xs px-3 py-1.5 border border-zinc-700 rounded-md text-zinc-300 bg-zinc-900/50">Kafka</span>
+			<span class="font-mono text-xs px-3 py-1.5 border border-zinc-700 rounded-md text-zinc-300 bg-zinc-900/50">AWS</span>
+			<span class="font-mono text-xs px-3 py-1.5 border border-zinc-700 rounded-md text-zinc-300 bg-zinc-900/50">Kubernetes</span>
+			<span class="font-mono text-xs px-3 py-1.5 border border-zinc-700 rounded-md text-zinc-300 bg-zinc-900/50">Terraform</span>
+			<span class="font-mono text-xs px-3 py-1.5 border border-zinc-700 rounded-md text-zinc-300 bg-zinc-900/50">PostgreSQL</span>
+			<span class="font-mono text-xs px-3 py-1.5 border border-zinc-700 rounded-md text-zinc-300 bg-zinc-900/50">Redis</span>
+			<span class="font-mono text-xs px-3 py-1.5 border border-zinc-700 rounded-md text-zinc-300 bg-zinc-900/50">GitHub Actions</span>
+		</div>
+	</section>
+
 	<section>
-		<h2 class="text-sm font-mono tracking-widest text-zinc-500 uppercase mb-6">/ Case_Studies</h2>
-		<div class="grid md:grid-cols-2 gap-4">
+		<h2 class="text-sm font-mono tracking-widest text-zinc-500 uppercase mb-6">// Case Studies</h2>
+		<div class="grid md:grid-cols-1 gap-4 mb-8">
 			{projects.map(project => <ProjectCard project={project} />)}
+		</div>
+		<div class="border-t border-zinc-800 pt-6">
+			<p class="text-zinc-500 text-sm font-mono mb-2">// Coming</p>
+			<ul class="space-y-2 text-zinc-600 text-sm">
+				<li>→ Backpressure at the Write Boundary</li>
+				<li>→ Event Contracts Before Brokers</li>
+				<li>→ Platform Migration: GitHub → Forgejo</li>
+			</ul>
 		</div>
 	</section>
 </Base>
