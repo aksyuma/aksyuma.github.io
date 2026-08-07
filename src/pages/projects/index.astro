@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+---
+<Base title="Projects | aksyuma">
+	<section class="mb-12">
+		<h1 class="text-3xl font-extrabold tracking-tight mb-4 font-mono">
+			/projects
+		</h1>
+		<p class="text-zinc-400 text-sm max-w-xl leading-relaxed">
+			Bounded case studies and reference implementations. Each entry documents a real engineering decision with explicit constraints, trade-offs, and evidence boundaries.
+		</p>
+	</section>
+
+	<section>
+		<div class="grid md:grid-cols-2 gap-4">
+			{projects.map(project => <ProjectCard project={project} />)}
+		</div>
+	</section>
+</Base>
