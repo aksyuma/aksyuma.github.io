@@ -2,23 +2,28 @@
 const { project } = Astro.props;
 const { title, description, tags, isRedacted } = project.data;
 ---
-<a href={`/projects/${project.slug}`} class="block group relative p-6 border border-zinc-800 bg-zinc-900/50 rounded-lg hover:border-emerald-500/50 transition-all duration-300">
-  {isRedacted && (
-    <span class="absolute top-3 right-3 font-mono text-[10px] tracking-widest text-red-500 bg-red-950/50 border border-red-900 px-2 py-0.5 rounded uppercase">
-      Declassified
-    </span>
-  )}
-  <h3 class="text-xl font-bold text-zinc-100 group-hover:text-emerald-400 transition-colors mb-2 font-mono">
-    {title}
-  </h3>
+<a href={`/projects/${project.slug}`} class="block group relative p-6 border border-zinc-800 bg-zinc-900/30 rounded-lg hover:border-emerald-500/50 hover:bg-zinc-900/60 transition-all duration-300">
+  <div class="flex items-start justify-between mb-3">
+    <h3 class="text-xl font-bold text-zinc-100 group-hover:text-emerald-400 transition-colors font-mono">
+      {title}
+    </h3>
+    {isRedacted && (
+      <span class="font-mono text-[10px] tracking-widest text-zinc-500 border border-zinc-700 px-2 py-0.5 rounded uppercase shrink-0 ml-3">
+        Anonymised
+      </span>
+    )}
+  </div>
   <p class="text-zinc-400 text-sm mb-4 leading-relaxed">
     {description}
   </p>
-  <div class="flex flex-wrap gap-2">
-    {tags.map((tag: string) => (
-      <span class="font-mono text-xs text-zinc-500 bg-zinc-900 px-2 py-1 border border-zinc-800 rounded">
-        {tag}
-      </span>
-    ))}
+  <div class="flex items-center justify-between">
+    <div class="flex flex-wrap gap-2">
+      {tags.map((tag: string) => (
+        <span class="font-mono text-xs text-zinc-500 bg-zinc-900 px-2 py-0.5 border border-zinc-800 rounded">
+          {tag}
+        </span>
+      ))}
+    </div>
+    <span class="text-zinc-600 group-hover:text-emerald-400 transition-colors text-sm font-mono">→</span>
   </div>
 </a>

@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="About | aksyuma">
+	<section class="max-w-2xl">
+		<h1 class="text-4xl font-extrabold tracking-tight mb-6 font-mono">
+			Amos Syuma
+		</h1>
+		<p class="text-lg text-zinc-300 leading-relaxed mb-8">
+			I build and operate platforms that move data reliably at scale — event-driven pipelines, distributed systems, and the infrastructure that keeps them recoverable at 2am.
+		</p>
+
+		<div class="border-l-2 border-emerald-500/50 pl-4 mb-10">
+			<p class="text-zinc-400 text-sm italic">
+				Currently focused on platform engineering, delivery automation, and making complex systems observable and explainable.
+			</p>
+		</div>
+
+		<h2 class="text-xl font-bold text-zinc-100 font-mono mb-4">What I work with</h2>
+		<div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
+			<div class="text-center p-3 border border-zinc-800 rounded-lg">
+				<span class="text-sm text-zinc-300">Go</span>
+			</div>
+			<div class="text-center p-3 border border-zinc-800 rounded-lg">
+				<span class="text-sm text-zinc-300">Kafka</span>
+			</div>
+			<div class="text-center p-3 border border-zinc-800 rounded-lg">
+				<span class="text-sm text-zinc-300">AWS</span>
+			</div>
+			<div class="text-center p-3 border border-zinc-800 rounded-lg">
+				<span class="text-sm text-zinc-300">Kubernetes</span>
+			</div>
+			<div class="text-center p-3 border border-zinc-800 rounded-lg">
+				<span class="text-sm text-zinc-300">Terraform</span>
+			</div>
+			<div class="text-center p-3 border border-zinc-800 rounded-lg">
+				<span class="text-sm text-zinc-300">PostgreSQL</span>
+			</div>
+		</div>
+
+		<h2 class="text-xl font-bold text-zinc-100 font-mono mb-4">How I think about engineering</h2>
+		<div class="space-y-4 mb-10">
+			<div class="flex items-start gap-3">
+				<span class="text-emerald-400 font-mono text-sm mt-1 shrink-0">01</span>
+				<p class="text-zinc-400 text-sm"><span class="text-zinc-200 font-medium">Evidence over assertion.</span> Every claim on this site links to constraints, trade-offs, and what I couldn't measure.</p>
+			</div>
+			<div class="flex items-start gap-3">
+				<span class="text-emerald-400 font-mono text-sm mt-1 shrink-0">02</span>
+				<p class="text-zinc-400 text-sm"><span class="text-zinc-200 font-medium">Decisions, not just solutions.</span> I document why something was chosen, what was rejected, and when it should be revisited.</p>
+			</div>
+			<div class="flex items-start gap-3">
+				<span class="text-emerald-400 font-mono text-sm mt-1 shrink-0">03</span>
+				<p class="text-zinc-400 text-sm"><span class="text-zinc-200 font-medium">Operability is a design output.</span> If it can't be backed up, restored, and explained to the next person, it's not done.</p>
+			</div>
+		</div>
+
+		<h2 class="text-xl font-bold text-zinc-100 font-mono mb-4">Explore</h2>
+		<div class="flex flex-col gap-3">
+			<a href="/projects" class="group flex items-center justify-between p-4 border border-zinc-800 rounded-lg hover:border-emerald-500/50 transition-colors">
+				<div>
+					<span class="text-zinc-200 font-medium">Case Studies</span>
+					<p class="text-zinc-500 text-sm">Real engineering decisions with bounded claims</p>
+				</div>
+				<span class="text-zinc-600 group-hover:text-emerald-400 transition-colors">→</span>
+			</a>
+			<a href="https://github.com/aksyuma" class="group flex items-center justify-between p-4 border border-zinc-800 rounded-lg hover:border-emerald-500/50 transition-colors">
+				<div>
+					<span class="text-zinc-200 font-medium">GitHub</span>
+					<p class="text-zinc-500 text-sm">Open source and reference implementations</p>
+				</div>
+				<span class="text-zinc-600 group-hover:text-emerald-400 transition-colors">→</span>
+			</a>
+		</div>
+	</section>
+</Base>
