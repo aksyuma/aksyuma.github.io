@@ -6,18 +6,24 @@ import { getCollection } from 'astro:content';
 const projects = await getCollection('projects');
 ---
 <Base title="Projects | aksyuma">
-	<section class="mb-12">
-		<h1 class="text-3xl font-extrabold tracking-tight mb-4 font-mono">
-			/projects
+	<section class="mb-8">
+		<h1 class="text-4xl font-extrabold tracking-tight mb-4 font-mono">
+			Case Studies
 		</h1>
-		<p class="text-zinc-400 text-sm max-w-xl leading-relaxed">
-			Bounded case studies and reference implementations. Each entry documents a real engineering decision with explicit constraints, trade-offs, and evidence boundaries.
+		<p class="text-zinc-400 text-base max-w-xl leading-relaxed">
+			Engineering decisions dissected — what was built, why it was chosen, what the trade-offs were, and what I'd change next time. Each study has explicit evidence boundaries.
 		</p>
 	</section>
 
-	<section>
+	<section class="mb-12">
 		<div class="grid md:grid-cols-2 gap-4">
 			{projects.map(project => <ProjectCard project={project} />)}
 		</div>
+	</section>
+
+	<section class="border-t border-zinc-800 pt-8">
+		<p class="text-zinc-500 text-sm font-mono">
+			More case studies in progress — covering backpressure design, event contracts, and platform migration patterns.
+		</p>
 	</section>
 </Base>
