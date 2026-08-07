@@ -12,6 +12,7 @@ permissions: {} # Default deny — permissions granted at job level
 jobs:
   release:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: write # Needed to create tags, releases, and push changelog
       issues: write # Needed for semantic-release to comment on issues
@@ -20,7 +21,8 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 22
+          node-version-file: .node-version
+          cache: yarn
       - run: corepack enable
       - run: yarn install --immutable
       - name: Semantic Release
